@@ -582,5 +582,26 @@
   document.getElementById('reviews-slider').addEventListener('mouseleave', () => { paused = false; resetTimer() })
   timer = setInterval(() => goTo(cur + 1), 4500)
 </script>
+
+<script>
+  // ── Rastreamento de origem via ?src= ──────────────────────────────────────
+  (function () {
+    const src = new URLSearchParams(window.location.search).get('src') || '';
+
+    const SOURCE_MESSAGES = {
+      'instagram-bio':       'Ol%C3%A1%2C%20vim%20pelo%20Instagram%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20com%20a%20Dra.%20Camila%20Santiago',
+      'google-meu-negocio':  'Ol%C3%A1%2C%20vim%20pelo%20Google%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20com%20a%20Dra.%20Camila%20Santiago',
+      'meta-ads':            'Ol%C3%A1%2C%20vi%20o%20an%C3%BAncio%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20com%20a%20Dra.%20Camila%20Santiago',
+      'google-ads':          'Ol%C3%A1%2C%20vi%20o%20an%C3%BAncio%20no%20Google%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20com%20a%20Dra.%20Camila%20Santiago',
+    };
+
+    const message = SOURCE_MESSAGES[src] || 'Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20com%20a%20Dra.%20Camila%20Santiago';
+    const BASE_WA = 'https://wa.me/5511948679838?text=';
+
+    document.querySelectorAll('a[href*="wa.me"]').forEach(function (el) {
+      el.href = BASE_WA + message;
+    });
+  })();
+</script>
 </body>
 </html>
